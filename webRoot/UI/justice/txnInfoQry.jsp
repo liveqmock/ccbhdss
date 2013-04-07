@@ -82,7 +82,7 @@
                     " WHERE B1.EXT_SYSTEM_INDEX = B2.CUST_NO) C1,BF_EVT_DEP_SAE C2\n" +
                     "     WHERE C1.ACCT_NO = C2.ACCT_NO AND \n" +
                     "           C2.SA_TX_DT >=C1.CCKKSSJ AND C2.SA_TX_DT <=C1.CCKJSSJ\n" +
-                    "     ORDER BY BDHM, CCXH, WLXH;            \n";
+                    "     ORDER BY BDHM, CCXH, WLXH            \n";
 
     DBGrid dbGrid = new DBGrid();
     dbGrid.setGridID("ActionTable");
@@ -108,13 +108,10 @@
 </head>
 <body bgcolor="#ffffff" onload="body_resize();" class="Bodydefault">
 <fieldset>
-    <legend>
-        查询条件
-    </legend>
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <form id="queryForm" name="queryForm" method="post" action="acctInfoQry.jsp">
             <tr height="20">
-                <td width="100%" align="center" nowrap="nowrap">
+                <td width="100%" align="left" nowrap="nowrap">
                     <input name="cbRetrieve" type="button" class="buttonGrooveDisable" id="button"
                            onClick="cbRetrieve_Click()" value="开始查询">
                 </td>
