@@ -21,15 +21,12 @@
             ServletFileUpload upload = new ServletFileUpload(factory);
             List<FileItem> items = upload.parseRequest(request);//得到所有的文件
             Iterator<FileItem> itr = items.iterator();
-            String respStr = "";
             while (itr.hasNext()) {//依次处理每个文件
                 FileItem item = (FileItem) itr.next();
                 String fileName = item.getName();//获得文件名，包括路径
                 if (fileName != null) {
                     //File fullFile = new File(item.getName());
                     //File savedFile = new File(uploadPath, fullFile.getName());
-                    //byte[] buffer = item.get();
-                    //respStr = item.getString("UTF-8");
 
                     //清理现存数据
                     ConnectionManager cm = ConnectionManager.getInstance();
@@ -61,8 +58,6 @@
 
                         buffer.append(line);
                     }
-                    //System.out.println(buffer.toString());
-                    //out.print(buffer.toString());
                     errmsg="数据上传成功。";
                 }
             }
