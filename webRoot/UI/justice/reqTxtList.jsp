@@ -53,16 +53,17 @@
                 <td width="10%" align="center" nowrap="nowrap">
                     <input type="submit" name="uploadButton"  value="上传数据" />
                 </td>
-<%--
-                <td  width="10%" align="left" nowrap="nowrap">
-                    <input name="cbRetrieve" type="button" class="buttonGrooveDisable" id="button"
-                           onClick="cbRetrieve_Click()" value="清空当前数据">
+                <td width="10%" align="center" nowrap="nowrap">
+                    <input type="button" name="expTxt"  value="生成报表" onClick="expTxt_click()" />
                 </td>
---%>
+
             </tr>
         </form>
     </table>
 </fieldset>
+<form id="rptForm">
+
+</form>
 <fieldset>
     <legend>
         查询结果

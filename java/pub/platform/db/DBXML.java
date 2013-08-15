@@ -233,7 +233,8 @@ public class DBXML {
         String outstr = "";
         Document doc;
         Element rootNode, child;
-        // System.out.println(xmlStr);
+
+        System.out.println(xmlStr);
 
         try {
             Reader reader = new StringReader(xmlStr);
@@ -326,8 +327,8 @@ public class DBXML {
             }
 
         } catch (JDOMException ex) {
-            System.out.print(ex.getMessage());
-
+            //System.out.print(ex.getMessage());
+            ex.printStackTrace();
         }
 
         return outstr;

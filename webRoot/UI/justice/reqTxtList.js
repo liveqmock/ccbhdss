@@ -13,3 +13,10 @@ function cbRetrieve_Click() {
 
     Table_Refresh("ActionTable");
 }
+
+function expTxt_click() {
+
+    document.getElementById("rptForm").target = "_blank";
+    document.getElementById("rptForm").action = "justiceReport.jsp";
+    document.getElementById("rptForm").submit();
+}

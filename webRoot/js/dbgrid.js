@@ -2993,7 +2993,7 @@ function openWindowWithPost(url, name, value) {
     var html = "";
     html += "<html><head></head><body><form id='formid' method='post' action='" + url + "'>";
     html += "<input type='hidden' name='xx'" + " value='" + value + "'/>";
-    html += "</form><script type='text/javascript'>document.getElementById(\"formid\").submit();setTimeout(\"self.close()\",10000);</script></body></html>";
+    html += "</form><script type='text/javascript'>document.getElementById(\"formid\").submit();setTimeout(\"self.close()\",150000);</script></body></html>";
     newWindow.document.write(html);
     return newWindow;
 }

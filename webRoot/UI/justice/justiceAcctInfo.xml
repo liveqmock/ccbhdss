@@ -1,0 +1,222 @@
+SELECT 'ZHXX',
+        BDHM,
+        ROW_NUMBER() OVER(PARTITION BY BDHM ORDER BY KHZH) AS CCXH,
+        KHZH,
+        YE,
+        FKSJ,
+        CCLB,
+        ZHZT,
+        KHWD,
+        BZ,
+        TXDZ,
+        YZBM,
+        LXDH,
+        BEIZ
+        FROM (SELECT 'ZHXX',
+        BDHM,
+        KHZH,
+        CASE
+        WHEN trim(zhzt) = '结清' THEN
+        0
+        ELSE
+        YE
+        END YE,
+        FKSJ,
+        CCLB,
+        ZHZT,
+        KHWD,
+        BZ,
+        TXDZ,
+        YZBM,
+        LXDH,
+        BEIZ
+        FROM (SELECT 'ZHXX',
+        B1.BDHM AS BDHM,
+        CASE
+        WHEN TRIM(B2.CRD_NO) IS NULL THEN
+        B2.CUST_ACCT_NO
+        ELSE
+        B2.CRD_NO
+        END "KHZH",
+        B2.ACCT_BAL AS YE,
+        CASE
+        WHEN TRIM(B2.CUST_ACCT_NO) IS NOT NULL THEN
+        (SELECT CURRENT_DATE FROM DUAL)
+        ELSE
+        NULL
+        END "FKSJ",
+        CASE
+        WHEN TRIM(B2.CRD_NO) IS NOT NULL THEN
+        '卡'
+        ELSE
+        ''
+        END "CCLB",
+        (SELECT SOURCE_CD_DESC
+        FROM BF_CM_STD_CODE
+        WHERE CATEGORY_CD = 'ACD0100043'
+        AND ODS_STANDARD_CD = B2.ACCT_STS) AS ZHZT,
+        B2.INST_NO AS KHWD,
+        B2.CURR_CD AS BZ,
+        '' AS TXDZ,
+        '' AS YZBM,
+        '' AS LXDH,
+        '' AS BEIZ
+        FROM (SELECT C1.EXT_SYSTEM_INDEX, C2.BDHM, C1.EXT_SYSTEM_ID
+        FROM (SELECT A2.EXT_SYSTEM_INDEX,
+        A2.EXT_SYSTEM_ID,
+        A1.CERT_NO
+        FROM BF_PR_IND_INFO              A1,
+        BF_PR_IND_PARTY_CROSS_INDEX A2
+        WHERE A1.P_CUST_NO = A2.P_CUST_NO
+        AND A2.EXT_SYSTEM_ID IN ('0012')) C1,
+        B_F_SFCX_QQINFO C2
+        WHERE C1.CERT_NO(+) = C2.DSRZJHM) B1,
+        BF_AGT_DEP_ACCT_SAP B2
+        WHERE B1.EXT_SYSTEM_INDEX = B2.CUST_NO(+)
+        UNION
+        SELECT 'ZHXX',
+        B1.BDHM AS BDHM,
+        B2.CUST_ACCT_NO AS KHZH,
+        B2.REAL_BAL AS YE,
+        CASE
+        WHEN TRIM(B2.CUST_ACCT_NO) IS NOT NULL THEN
+        (SELECT CURRENT_DATE FROM DUAL)
+        ELSE
+        NULL
+        END "FKSJ",
+        CASE
+        WHEN SUBSTR(B2.CUST_ACCT_NO, 1, 1) = '2' THEN
+        '折'
+        ELSE
+        ''
+        END "CCLB",
+        CASE
+        WHEN TRIM(B2.POFF_DATE) <> '1899-12-31' THEN
+    '结清'
+    WHEN TRIM(B2.POFF_DATE) = '1899-12-31' THEN
+    '正常'
+    ELSE
+    ''
+    END "ZHZT",
+    B2.INST_NO AS KHWD,
+    B2.CURR_CD AS BZ,
+    '' AS TXDZ,
+    '' AS YZBM,
+    '' AS LXDH,
+    '' AS BEIZ
+    FROM (SELECT C1.EXT_SYSTEM_INDEX, C2.BDHM, C1.EXT_SYSTEM_ID
+    FROM (SELECT A2.EXT_SYSTEM_INDEX,
+    A2.EXT_SYSTEM_ID,
+    A1.CERT_NO
+    FROM BF_PR_IND_INFO              A1,
+    BF_PR_IND_PARTY_CROSS_INDEX A2
+    WHERE A1.P_CUST_NO = A2.P_CUST_NO
+    AND A2.EXT_SYSTEM_ID IN ('0012')) C1,
+    B_F_SFCX_QQINFO C2
+    WHERE C1.CERT_NO(+) = C2.DSRZJHM) B1,
+    BF_AGT_DEP_ACCT_TDP B2
+    WHERE B1.EXT_SYSTEM_INDEX = B2.CUST_NO(+)
+
+    )
+    UNION
+    SELECT 'ZHXX',
+    BDHM,
+    KHZH,
+    CASE
+    WHEN trim(zhzt) = '结清' THEN
+    0
+    ELSE
+    YE
+    END YE,
+    FKSJ,
+    CCLB,
+    ZHZT,
+    KHWD,
+    BZ,
+    TXDZ,
+    YZBM,
+    LXDH,
+    BEIZ
+    FROM (SELECT 'ZHXX',
+    B1.BDHM AS BDHM,
+    B2.CUST_ACCT_NO AS KHZH,
+    B2.ACCT_BAL AS YE,
+    CASE
+    WHEN TRIM(B2.CUST_ACCT_NO) IS NOT NULL THEN
+    (SELECT CURRENT_DATE FROM DUAL)
+    ELSE
+    NULL
+    END "FKSJ",
+    CASE
+    WHEN SUBSTR(B2.CUST_ACCT_NO, 1, 3) = '371' THEN
+    '对公'
+    ELSE
+    ''
+    END "CCLB",
+    (SELECT SOURCE_CD_DESC
+    FROM BF_CM_STD_CODE
+    WHERE CATEGORY_CD = 'ACD0100043'
+    AND ODS_STANDARD_CD = B2.ACCT_STS) AS ZHZT,
+    B2.INST_NO AS KHWD,
+    B2.CURR_CD AS BZ,
+    '' AS TXDZ,
+    '' AS YZBM,
+    '' AS LXDH,
+    '' AS BEIZ
+    FROM (SELECT C1.EXT_SYSTEM_INDEX, C2.BDHM, C1.EXT_SYSTEM_ID
+    FROM (SELECT A2.EXT_SYSTEM_INDEX,
+    A2.EXT_SYSTEM_ID,
+    A1.ORG_INSTN_CD
+    FROM BF_PR_CORP_INFO_CLPM         A1,
+    BF_PR_CORP_PARTY_CROSS_INDEX A2
+    WHERE A1.CUST_NO = A2.P_CUST_NO
+    AND A2.EXT_SYSTEM_ID IN ('0000030002')) C1,
+    B_F_SFCX_QQINFO C2
+    WHERE C1.ORG_INSTN_CD(+) = C2.DSRZJHM) B1,
+    BF_AGT_DEP_ACCT_SAE B2
+    WHERE B1.EXT_SYSTEM_INDEX = B2.CUST_NO(+)
+    UNION
+    SELECT 'ZHXX',
+    B1.BDHM AS BDHM,
+    B2.CUST_ACCT_NO AS KHZH,
+    B2.REAL_BAL AS YE,
+    CASE
+    WHEN TRIM(B2.CUST_ACCT_NO) IS NOT NULL THEN
+    (SELECT CURRENT_DATE FROM DUAL)
+    ELSE
+    NULL
+    END "FKSJ",
+    CASE
+    WHEN SUBSTR(B2.CUST_ACCT_NO, 1, 3) = '371' THEN
+    '对公'
+    ELSE
+    ''
+    END "CCLB",
+    CASE
+    WHEN TRIM(B2.POFF_DATE) <> '1899-12-31' THEN
+        '结清'
+        WHEN TRIM(B2.POFF_DATE) = '1899-12-31' THEN
+        '正常'
+        ELSE
+        ''
+        END "ZHZT",
+        B2.INST_NO AS KHWD,
+        B2.CURR_CD AS BZ,
+        '' AS TXDZ,
+        '' AS YZBM,
+        '' AS LXDH,
+        '' AS BEIZ
+        FROM (SELECT C1.EXT_SYSTEM_INDEX, C2.BDHM, C1.EXT_SYSTEM_ID
+        FROM (SELECT A2.EXT_SYSTEM_INDEX,
+        A2.EXT_SYSTEM_ID,
+        A1.ORG_INSTN_CD
+        FROM BF_PR_CORP_INFO_CLPM         A1,
+        BF_PR_CORP_PARTY_CROSS_INDEX A2
+        WHERE A1.CUST_NO = A2.P_CUST_NO
+        AND A2.EXT_SYSTEM_ID IN ('0000030002')) C1,
+        B_F_SFCX_QQINFO C2
+        WHERE C1.ORG_INSTN_CD(+) = C2.DSRZJHM) B1,
+        BF_AGT_DEP_ACCT_TDE B2
+        WHERE B1.EXT_SYSTEM_INDEX = B2.CUST_NO(+)
+
+        ))

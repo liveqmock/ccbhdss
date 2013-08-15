@@ -32,11 +32,12 @@
                 <td width="60%" align="right" nowrap="nowrap" class="data_input">
                     <input type="file" name="file" style="width:90%" />
                 </td>
-                <%--<input type="file" name="file"/><br/>--%>
                 <td width="10%" align="center" nowrap="nowrap">
                     <input type="submit" name="submit"  value="上传数据" />
                 </td>
-                <%--<input type="submit" name="submit" value="提交"/>--%>
+                <td width="10%" align="center" nowrap="nowrap">
+                    <input type="button" name="expTxt"  value="生成报表" onClick="expTxt_click()" />
+                </td>
             </tr>
         </form>
     </table>

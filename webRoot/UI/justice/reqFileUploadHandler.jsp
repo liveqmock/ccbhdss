@@ -27,7 +27,6 @@
                 if (fileName != null) {
                     //File fullFile = new File(item.getName());
                     //File savedFile = new File(uploadPath, fullFile.getName());
-
                     //清理现存数据
                     ConnectionManager cm = ConnectionManager.getInstance();
                     DatabaseConnection dc = cm.get();

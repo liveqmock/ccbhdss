@@ -10,11 +10,11 @@
 <html>
   <head><title></title>
        <script language="javascript" src="/UI/support/pub.js"></script>
-    <script language="javascript" src="/js/basic.js"></script>
-    <script language="javascript" src="/js/xmlHttp.js"></script>
-    <script language="javascript" src="/js/dbgrid.js"></script>
-    <script language="javascript" src="/js/dropdownData.js"></script>
-    <script language="javascript" src="/js/dbutil.js"></script>
+    <%--<script language="javascript" src="/js/basic.js"></script>--%>
+    <%--<script language="javascript" src="/js/xmlHttp.js"></script>--%>
+    <%--<script language="javascript" src="/js/dbgrid.js"></script>--%>
+    <%--<script language="javascript" src="/js/dropdownData.js"></script>--%>
+    <%--<script language="javascript" src="/js/dbutil.js"></script>--%>
     <script language="javascript" src="dsmxQry.js"></script>
     <%
        String qryResult = null;

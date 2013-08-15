@@ -32,13 +32,13 @@ background-color: #FFFFCC;
 }
 
 .intreeeditRow{
-  font-size:8pt; height:16px; border:1px solid silver; padding:0; margin:0;
+  font-size:11px; height:16px; border:1px solid silver; padding:0; margin:0;
   margin-left:4px;
   -moz-user-select:  text;   
   -khtml-user-select: text;
 }
 .dhx_tree_textSign{
-   font-size:8pt;
+   font-size:11px;
    font-family:monospace;
    width:21px;
    color:black;
@@ -77,7 +77,7 @@ background-position-y: center;
 	border-right:1px solid transparent;
 	border-left: 1px solid transparent;
 	font-family:Tahoma;
-	font-size:11px !important;
+	font-size:12px !important;
 	overflow:hidden;
 	padding:0px 0px 0px 0px;
 }
@@ -90,7 +90,7 @@ background-position-y: center;
 
 	line-height:17px;
 	
-	font-size:11px !important;
+	font-size:12px !important;
 	font-family:Tahoma;
 	overflow:hidden;
 }
